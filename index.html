@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="WaterMark - DCKK: Professional, private, browser-based image watermarking utility for DCKK JEWELERS. 100% local processing with full-resolution export.">
+  <title>WaterMark - DCKK — Image Watermark Studio</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23B59A63'><path d='M12 2L2 9l10 13 10-13-10-7zm0 3.2L18.4 9 12 17.5 5.6 9 12 5.2z'/></svg>">
+</head>
+<body>
+  <!-- Header -->
+  <header class="app-header" role="banner">
+    <div class="header-container">
+      <div class="brand-area">
+        <div class="brand-logo" aria-hidden="true">
+          <!-- Elegant geometric diamond jewel emblem -->
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="6 3 18 3 22 9 12 22 2 9" stroke="#B59A63"></polygon>
+            <line x1="12" y1="22" x2="12" y2="9" stroke="#B59A63"></line>
+            <line x1="2" y1="9" x2="22" y2="9" stroke="#B59A63"></line>
+            <line x1="6" y1="3" x2="10" y2="9" stroke="#B59A63"></line>
+            <line x1="18" y1="3" x2="14" y2="9" stroke="#B59A63"></line>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <h1 class="brand-title">WaterMark - DCKK</h1>
+          <span class="brand-tagline">Image Watermark Studio</span>
+        </div>
+      </div>
+
+      <div class="header-actions">
+        <div class="privacy-status-pill" title="All processing occurs locally in your browser. No files are uploaded to any server.">
+          <span class="status-indicator-dot" aria-hidden="true"></span>
+          <svg class="pill-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+          </svg>
+          <span>Private processing</span>
+        </div>
+        <button type="button" id="open-privacy-btn" class="header-btn" aria-haspopup="dialog" aria-controls="privacy-dialog">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="10"></circle>
+            <line x1="12" y1="16" x2="12" y2="12"></line>
+            <line x1="12" y1="8" x2="12.01" y2="8"></line>
+          </svg>
+          <span>Privacy &amp; Info</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Application Workspace -->
+  <main class="app-workspace" id="main-content">
+    <div class="workspace-container">
+      
+      <!-- LEFT COLUMN: Image Workspace -->
+      <section class="image-column" aria-label="Image preview and comparison">
+
+        <!-- EMPTY STATE / UPLOAD AREA -->
+        <div id="drop-zone" class="upload-dropzone" tabindex="0" role="region" aria-label="Image upload area">
+          <input type="file" id="file-input" class="visually-hidden" accept="image/jpeg,image/png,image/webp" aria-label="Upload image">
+          
+          <div class="upload-content">
+            <div class="upload-icon-wrapper" aria-hidden="true">
+              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                <circle cx="8.5" cy="8.5" r="1.5"></circle>
+                <polyline points="21 15 16 10 5 21"></polyline>
+              </svg>
+            </div>
+            <h2 class="upload-title">Add an image to watermark</h2>
+            <p class="upload-subtitle">Drag and drop an image here, or browse your device.</p>
+            <button type="button" id="browse-btn" class="btn btn-primary upload-btn">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                <polyline points="17 8 12 3 7 8"></polyline>
+                <line x1="12" y1="3" x2="12" y2="15"></line>
+              </svg>
+              <span>Choose Image</span>
+            </button>
+            <div class="supported-formats" aria-label="Supported file formats">
+              <span class="format-badge">JPG</span>
+              <span class="format-badge">JPEG</span>
+              <span class="format-badge">PNG</span>
+              <span class="format-badge">WebP</span>
+            </div>
+
+            <!-- Demo sample images for immediate testing -->
+            <div class="sample-images-area">
+              <span class="sample-label">Or try a test jewelry sample:</span>
+              <div class="sample-pills">
+                <button type="button" class="sample-pill-btn" data-sample="ring-landscape">Landscape Ring</button>
+                <button type="button" class="sample-pill-btn" data-sample="earrings-portrait">Portrait Earrings</button>
+                <button type="button" class="sample-pill-btn" data-sample="necklace-transparent">Transparent PNG</button>
+                <button type="button" class="sample-pill-btn" data-sample="watch-dark">Dark Velvet Watch</button>
+                <button type="button" class="sample-pill-btn" data-sample="pearl-bright">High-Key Pearl</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- LOADED STATE: PREVIEW WORKSPACE -->
+        <div id="preview-workspace" class="preview-workspace hidden" aria-live="polite">
+          
+          <!-- Workspace Toolbar -->
+          <div class="preview-toolbar" role="toolbar" aria-label="Preview controls">
+            <div class="toolbar-group">
+              <!-- Mode Segmented Control -->
+              <div class="segmented-control" role="radiogroup" aria-label="Preview display mode">
+                <button type="button" class="seg-btn" id="mode-original-btn" role="radio" aria-checked="false" tabindex="-1">
+                  Original
+                </button>
+                <button type="button" class="seg-btn active" id="mode-watermarked-btn" role="radio" aria-checked="true" tabindex="0">
+                  Watermarked
+                </button>
+                <button type="button" class="seg-btn" id="mode-compare-btn" role="radio" aria-checked="false" tabindex="-1">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                    <line x1="12" y1="3" x2="12" y2="21"></line>
+                  </svg>
+                  <span>Compare</span>
+                </button>
+              </div>
+
+              <!-- Fit View button -->
+              <button type="button" id="fit-view-btn" class="btn btn-ghost btn-sm" title="Fit image to view container">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <polyline points="15 3 21 3 21 9"></polyline>
+                  <polyline points="9 21 3 21 3 15"></polyline>
+                  <line x1="21" y1="3" x2="14" y2="10"></line>
+                  <line x1="3" y1="21" x2="10" y2="14"></line>
+                </svg>
+                <span>Fit</span>
+              </button>
+            </div>
+
+            <div class="toolbar-group">
+              <button type="button" id="replace-image-btn" class="btn btn-ghost btn-sm" title="Replace current image with another file">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                  <polyline points="17 8 12 3 7 8"></polyline>
+                  <line x1="12" y1="3" x2="12" y2="15"></line>
+                </svg>
+                <span>Replace</span>
+              </button>
+              <button type="button" id="clear-image-btn" class="btn btn-ghost btn-sm btn-danger-hover" title="Remove image and return to upload screen">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <line x1="18" y1="6" x2="6" y2="18"></line>
+                  <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+                <span>Clear</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Preview Stage / Canvas Display Area -->
+          <div class="preview-stage" id="preview-stage" tabindex="0" role="figure" aria-label="Image preview area">
+            <div class="stage-scroller" id="stage-scroller">
+              
+              <!-- Standard Preview Container (Original or Watermarked) -->
+              <div class="canvas-wrapper" id="canvas-wrapper">
+                <canvas id="preview-canvas" class="preview-canvas"></canvas>
+              </div>
+
+              <!-- Interactive Split Comparison View (Active when Compare mode is selected) -->
+              <div class="compare-container hidden" id="compare-container" aria-label="Before and after split comparison">
+                <div class="compare-layer compare-layer-base">
+                  <canvas id="compare-base-canvas" class="compare-canvas"></canvas>
+                  <span class="compare-badge badge-original">Original</span>
+                </div>
+                <div class="compare-layer compare-layer-clipped" id="compare-clipped-layer">
+                  <canvas id="compare-watermarked-canvas" class="compare-canvas"></canvas>
+                  <span class="compare-badge badge-watermarked">Watermarked</span>
+                </div>
+                
+                <!-- Draggable Divider Handle -->
+                <div class="compare-divider" id="compare-divider" role="slider" tabindex="0" aria-label="Comparison divider slider" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50" style="left: 50%;">
+                  <div class="divider-line"></div>
+                  <div class="divider-handle">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <polyline points="15 18 9 12 15 6"></polyline>
+                      <polyline points="9 18 3 12 9 6"></polyline>
+                    </svg>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <polyline points="9 18 15 12 9 6"></polyline>
+                      <polyline points="15 18 21 12 15 6"></polyline>
+                    </svg>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Image Information Status Bar -->
+          <div class="preview-meta-bar" aria-label="Image metadata">
+            <div class="meta-item">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                <polyline points="14 2 14 8 20 8"></polyline>
+              </svg>
+              <span id="meta-filename" class="meta-filename" title="Filename">image.jpg</span>
+            </div>
+            <div class="meta-separator" aria-hidden="true">•</div>
+            <div class="meta-item">
+              <span id="meta-dimensions" title="Natural resolution">0 × 0 px</span>
+            </div>
+            <div class="meta-separator" aria-hidden="true">•</div>
+            <div class="meta-item">
+              <span id="meta-filesize" title="File size">0 KB</span>
+            </div>
+            <div class="meta-separator" aria-hidden="true">•</div>
+            <div class="meta-item meta-zoom-indicator">
+              <span id="meta-zoom" title="Display scale">Fit (100%)</span>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Hidden canvas for original resolution export rendering -->
+        <canvas id="export-canvas" class="visually-hidden" aria-hidden="true"></canvas>
+
+      </section>
+
+
+      <!-- RIGHT COLUMN: Watermark Settings Panel -->
+      <aside class="settings-column" aria-label="Watermark configuration and export">
+        <div class="settings-panel">
+          
+          <div class="panel-header">
+            <h2 class="panel-title">Watermark Settings</h2>
+            <button type="button" id="reset-settings-btn" class="btn-text-subtle" title="Reset all watermark settings to original defaults">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path>
+                <path d="M3 3v5h5"></path>
+              </svg>
+              <span>Reset to defaults</span>
+            </button>
+          </div>
+
+          <form id="watermark-form" class="settings-form" onsubmit="return false;">
+            
+            <!-- SECTION 1: Watermark Text -->
+            <div class="control-group">
+              <div class="control-label-row">
+                <label for="watermark-text-input" class="control-label">Watermark Text</label>
+                <span class="char-count" id="text-char-count">13 / 100</span>
+              </div>
+              <div class="input-wrapper">
+                <input 
+                  type="text" 
+                  id="watermark-text-input" 
+                  class="text-input" 
+                  value="DCKK JEWELERS" 
+                  maxlength="100" 
+                  autocomplete="off" 
+                  spellcheck="false"
+                  placeholder="e.g. DCKK JEWELERS"
+                  required
+                >
+              </div>
+              <p id="text-error" class="control-error-msg hidden" role="alert">Please enter watermark text</p>
+            </div>
+
+            <!-- SECTION 2: Opacity -->
+            <div class="control-group">
+              <div class="control-label-row">
+                <label for="opacity-slider" class="control-label">Opacity</label>
+                <span class="value-readout" id="opacity-val">25%</span>
+              </div>
+              <div class="slider-wrapper">
+                <input 
+                  type="range" 
+                  id="opacity-slider" 
+                  class="custom-range" 
+                  min="5" 
+                  max="70" 
+                  step="1" 
+                  value="25"
+                  aria-describedby="opacity-val"
+                >
+              </div>
+            </div>
+
+            <!-- SECTION 3: Spacing -->
+            <div class="control-group">
+              <div class="control-label-row">
+                <label for="spacing-slider" class="control-label">Watermark Spacing</label>
+                <span class="value-readout" id="spacing-val">Balanced</span>
+              </div>
+              <div class="slider-wrapper">
+                <input 
+                  type="range" 
+                  id="spacing-slider" 
+                  class="custom-range" 
+                  min="1" 
+                  max="3" 
+                  step="0.05" 
+                  value="2"
+                  aria-describedby="spacing-val"
+                >
+                <div class="slider-ticks" aria-hidden="true">
+                  <span class="tick-label tick-left">Dense</span>
+                  <span class="tick-label tick-center">Balanced</span>
+                  <span class="tick-label tick-right">Wide</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- SECTION 4: Font Size -->
+            <div class="control-group">
+              <div class="control-label-row">
+                <label for="size-slider" class="control-label">Text Size</label>
+                <div class="size-controls-header">
+                  <button type="button" id="auto-size-toggle" class="toggle-pill active" aria-pressed="true">
+                    Auto
+                  </button>
+                  <span class="value-readout" id="size-val">Auto (~38px)</span>
+                </div>
+              </div>
+              <div class="slider-wrapper">
+                <input 
+                  type="range" 
+                  id="size-slider" 
+                  class="custom-range" 
+                  min="0.5" 
+                  max="2.2" 
+                  step="0.05" 
+                  value="1.0"
+                  aria-describedby="size-val"
+                >
+              </div>
+            </div>
+
+            <!-- SECTION 5: Font Weight -->
+            <div class="control-group">
+              <label class="control-label" id="font-weight-label">Font Weight</label>
+              <div class="pill-group" role="radiogroup" aria-labelledby="font-weight-label">
+                <button type="button" class="pill-option" data-weight="400" role="radio" aria-checked="false">Regular</button>
+                <button type="button" class="pill-option active" data-weight="500" role="radio" aria-checked="true">Medium</button>
+                <button type="button" class="pill-option" data-weight="600" role="radio" aria-checked="false">Semibold</button>
+                <button type="button" class="pill-option" data-weight="700" role="radio" aria-checked="false">Bold</button>
+              </div>
+            </div>
+
+            <!-- SECTION 6: Text Color -->
+            <div class="control-group">
+              <label class="control-label" id="text-color-label">Text Color</label>
+              <div class="color-options-row" role="radiogroup" aria-labelledby="text-color-label">
+                <button type="button" class="color-swatch-btn active" data-color="#FFFFFF" role="radio" aria-checked="true" title="White">
+                  <span class="swatch-circle swatch-white"></span>
+                  <span class="swatch-label">White</span>
+                </button>
+                <button type="button" class="color-swatch-btn" data-color="#17191D" role="radio" aria-checked="false" title="Black">
+                  <span class="swatch-circle swatch-black"></span>
+                  <span class="swatch-label">Black</span>
+                </button>
+                <div class="custom-color-container">
+                  <label for="custom-color-input" class="color-swatch-btn custom-picker-btn" id="custom-color-label" title="Custom color picker">
+                    <span class="swatch-circle swatch-custom" id="custom-color-preview"></span>
+                    <span class="swatch-label">Custom</span>
+                    <input type="color" id="custom-color-input" class="native-color-picker" value="#B59A63" aria-label="Custom watermark color">
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <!-- SECTION 7: Rotation -->
+            <div class="control-group">
+              <div class="control-label-row">
+                <label for="rotation-slider" class="control-label">Rotation</label>
+                <span class="value-readout" id="rotation-val">-35°</span>
+              </div>
+              <div class="slider-wrapper">
+                <input 
+                  type="range" 
+                  id="rotation-slider" 
+                  class="custom-range" 
+                  min="-60" 
+                  max="60" 
+                  step="1" 
+                  value="-35"
+                  aria-describedby="rotation-val"
+                >
+              </div>
+            </div>
+
+            <hr class="panel-divider" aria-hidden="true">
+
+            <!-- SECTION 8: Export & Download Actions -->
+            <div class="export-section">
+              <div class="export-options-row">
+                <div class="format-select-group">
+                  <label for="export-format-select" class="sub-label">Format</label>
+                  <select id="export-format-select" class="custom-select" aria-label="Export file format">
+                    <option value="image/png" selected>PNG (Lossless)</option>
+                    <option value="image/jpeg">JPEG (Compressed)</option>
+                  </select>
+                </div>
+
+                <!-- JPEG Quality option (conditionally visible) -->
+                <div class="quality-select-group hidden" id="jpeg-quality-group">
+                  <label for="jpeg-quality-slider" class="sub-label">Quality: <span id="jpeg-quality-val">92%</span></label>
+                  <input type="range" id="jpeg-quality-slider" class="custom-range range-sm" min="60" max="100" step="1" value="92">
+                </div>
+              </div>
+
+              <!-- Full resolution note -->
+              <div class="export-resolution-hint" id="export-resolution-hint">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                </svg>
+                <span id="export-res-text">Exports at full original resolution</span>
+              </div>
+
+              <!-- Main Download Action Button -->
+              <button type="button" id="download-btn" class="btn btn-primary btn-block download-btn" disabled>
+                <svg class="btn-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                  <polyline points="7 10 12 15 17 10"></polyline>
+                  <line x1="12" y1="15" x2="12" y2="3"></line>
+                </svg>
+                <span class="btn-text">Download Watermarked Image</span>
+                <span class="btn-spinner hidden" aria-hidden="true"></span>
+              </button>
+
+              <!-- Feedback message container -->
+              <div id="export-status-toast" class="export-toast hidden" role="status" aria-live="polite">
+                <svg class="toast-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+                <span id="export-status-msg">Downloaded successfully!</span>
+              </div>
+
+            </div>
+
+          </form>
+
+        </div>
+      </aside>
+
+    </div>
+  </main>
+
+  <!-- Privacy & Information Dialog Modal -->
+  <dialog id="privacy-dialog" class="custom-dialog" aria-labelledby="dialog-title">
+    <div class="dialog-content">
+      <div class="dialog-header">
+        <div class="dialog-title-group">
+          <div class="dialog-icon-shield" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#B59A63" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+            </svg>
+          </div>
+          <h2 id="dialog-title" class="dialog-heading">Privacy &amp; Local Processing</h2>
+        </div>
+        <button type="button" id="close-dialog-btn" class="dialog-close-btn" aria-label="Close dialog">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+
+      <div class="dialog-body">
+        <p class="privacy-highlight">
+          <strong>Your images stay strictly on your device.</strong> Watermarking, preview generation, and full-resolution exports happen entirely within your local browser.
+        </p>
+
+        <ul class="privacy-points-list">
+          <li>
+            <strong>Zero Remote Uploads:</strong> No image data, metadata, or coordinates are ever transferred to a remote server or cloud service.
+          </li>
+          <li>
+            <strong>Client-Side Engine:</strong> Uses standard browser HTML5 Canvas 2D and File APIs.
+          </li>
+          <li>
+            <strong>Memory Cleanliness:</strong> Temporary object URLs and image buffers are promptly disposed of when replacing or clearing images.
+          </li>
+          <li>
+            <strong>Original Quality Guaranteed:</strong> Preview uses a lightweight cached canvas for immediate 60fps interactivity, while the exported image is rendered at 100% of the original photo's natural width and height.
+          </li>
+        </ul>
+
+        <div class="about-dckk-box">
+          <h3 class="about-dckk-title">About WaterMark - DCKK</h3>
+          <p>A precision utility engineered for DCKK JEWELERS to rapidly protect luxury jewelry photography, certificates, and product catalogs with an authentic repeating diagonal proof pattern.</p>
+        </div>
+      </div>
+
+      <div class="dialog-footer">
+        <button type="button" id="dialog-got-it-btn" class="btn btn-primary btn-sm">Got it</button>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- Screen Reader Live Announcements -->
+  <div id="sr-announcements" class="visually-hidden" role="status" aria-live="polite"></div>
+
+  <!-- Scripts -->
+  <script src="script.js"></script>
+</body>
+</html>
